@@ -90,7 +90,6 @@ Inside `index.js` we require each of the other files and export it as one object
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/book-app");   
 // the mongoose.connect line above  needs to happen exactly once in your code
-    // move it from book.js to index.js  :)
 
 module.exports.Gargoyle = require("./gargoyle.js");
 module.exports.Goblin = require("./goblin.js");
@@ -112,7 +111,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
 2. Try running `node seed.js` in your terminal. If you're not seeing `created X books`, then something might be going wrong in your `book.js` file.  
 
   Here's an example of what your `book.js` could look like:
-  
+
   ```js
   // entire book.js so far
   var mongoose = require('mongoose');
@@ -149,8 +148,8 @@ Next we'll start to use our new model in `server.js`.
   app.get('/api/books', function (req, res) {
     // send all books as JSON response
     db.Book.find(function(err, books){
-      if (err) { 
-        console.log("index error: " + err); 
+      if (err) {
+        console.log("index error: " + err);
         res.sendStatus(500);
       }
       res.json(books);
@@ -158,7 +157,7 @@ Next we'll start to use our new model in `server.js`.
   });
   ```
 
-5. Restart your server. Debug any error messages you see. 
+5. Restart your server. Debug any error messages you see.
 
 6. If you've successfully seeded your database and debugged your code, you should see all the books from `seed.js` when you refresh the page.
 
