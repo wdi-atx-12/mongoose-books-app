@@ -13,7 +13,7 @@
   "license": "ISC",
   "homepage": "https://github.com/wdi-atx-12/mongoose-books-app#readme",
   "dependencies": {
-    "body-parser": "^1.15.0",
-    "express": "^4.13.3"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1"
   }
 }
