@@ -1,3 +1,5 @@
 var mongoose = require("mongoose");
 
-module.exports.Book = require("./book.js");
+// connect mongoose to your Mongo DB here
+
+// add exports here

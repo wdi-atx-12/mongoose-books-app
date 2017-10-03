@@ -58,20 +58,20 @@ First off let's setup mongo and mongoose.
   module.exports = Book;
   ```
 
-## 4. Review: what are modules ?
+## 4. Building out models
 
-1. We've already provided a `models/index.js` for you to use.  Examine it to see that it already:
-  - requires mongoose  
-  - connects to a local book-app database URI  
+1. We've already provided a `models/index.js` for you to use.  Examine it to see that it already requires `mongoose`.
 
-2. `index.js` will import each model and export an object called `exports` with keys representing each of our models.  That way we can `require` the entire directory and get all of our models!  Go ahead and import and export your `Book` model in `index.js`.
+2. Make sure you connect `mongoose` to your Mongo Database in either `server.js` or `models/index.js`.
+
+3. `models/index.js` will import each model and export an object called `exports` with keys representing each of our models.  That way we can `require` the entire directory and get all of our models!  Go ahead and import and export your `Book` model in `index.js`.
 
   ```js
   // models/index.js
   module.exports.Book = require("./book.js");
   ```
 
-3. Now if someone were to `require('./models')` they'd gain access to this book database model.
+4. Now if someone were to `require('./models')` they'd gain access to this book database model.
 
 Here's a module example:
 
@@ -88,8 +88,8 @@ Inside `index.js` we require each of the other files and export it as one object
 ```javascript
 // models/index.js
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/book-app");   
-// the mongoose.connect line above  needs to happen exactly once in your code
+
+// (you can connect mongoose to your Mongo DB either here or in your server.js--not both)
 
 module.exports.Gargoyle = require("./gargoyle.js");
 module.exports.Goblin = require("./goblin.js");
@@ -101,7 +101,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
 
 
 
-## 5. Verifying that this is working
+## 5. Seeding our Mongo Database
 
 1. Take a quick look in `seed.js`.  You should see that it does a `require('./models');` and then later uses `db.Book.create` to load some data into the database.  (You might also notice that it tries to clear the `book-app` database first by deleting all the records.)
 
@@ -120,7 +120,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
     title: String,
     author: String,
     image: String,
-    release_date: String
+    releaseDate: String
   });
 
   var Book = mongoose.model('Book', BookSchema);

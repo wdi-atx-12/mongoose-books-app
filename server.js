@@ -6,6 +6,8 @@
 //  SETUP and CONFIGURATION
 /////////////////////////////
 
+var port = process.env.PORT || 3000;
+
 //require express in our app
 var express = require('express'),
   bodyParser = require('body-parser');
@@ -131,8 +133,6 @@ app.delete('/api/books/:id', function (req, res) {
 
 
 
-
-
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Book app listening at http://localhost:3000/');
+app.listen(port, function() {
+  console.log('Book app listening on port ' + port);
 });

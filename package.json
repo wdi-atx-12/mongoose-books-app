@@ -1,21 +1,17 @@
 {
-  "name": "express-practice",
+  "name": "mongoose-books-app",
   "version": "1.0.0",
-  "description": "### Base Challenges - Build an Express App",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sf-wdi-labs/express-intro.git"
+    "url": "git+https://github.com/wdi-atx-12/mongoose-books-app.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sf-wdi-labs/express-intro/issues"
-  },
-  "homepage": "https://github.com/sf-wdi-labs/express-intro#readme",
+  "homepage": "https://github.com/wdi-atx-12/mongoose-books-app#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.3"
