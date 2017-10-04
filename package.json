@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,18 @@
   "license": "ISC",
   "homepage": "https://github.com/wdi-atx-12/mongoose-books-app#readme",
   "dependencies": {
-    "body-parser": "^1.15.0",
-    "express": "^4.13.3"
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.12.0"
+  },
+  "description": "## Deliverables",
+  "bugs": {
+    "url": "https://github.com/wdi-atx-12/mongoose-books-app/issues"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
