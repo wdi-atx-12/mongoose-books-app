@@ -1,5 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose 	= require('mongoose');
 
-// connect mongoose to your Mongo DB here
+require('dotenv').config();
 
-// add exports here
+mongoose.connection.openUri(process.env.DB_CONN);
+
+//require('./models')
+module.exports.Book = require("./book.js");
