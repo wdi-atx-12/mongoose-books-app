@@ -23,8 +23,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
-
 ////////////////////
 //  DATA
 ///////////////////
@@ -52,22 +50,12 @@ var books = [
     release_date: "Unknown 1597"
   }
 ];
-
-
 var newBookUUID = 18;
-
-
-
-
-
 
 
 ////////////////////
 //  ROUTES
 ///////////////////
-
-
-
 
 // define a root route: localhost:3000/
 app.get('/', function (req, res) {
