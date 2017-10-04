@@ -15,6 +15,7 @@ var express = require('express'),
 // generate a new express app and call it 'app'
 var app = express();
 
+//auto goes to index.js as a rule
 var db = require('./models');
 // serve static files in public
 app.use(express.static('public'));
