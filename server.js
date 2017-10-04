@@ -6,14 +6,18 @@
 //  SETUP and CONFIGURATION
 /////////////////////////////
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3500;
 
 //require express in our app
 var express = require('express'),
-  bodyParser = require('body-parser');
+ bodyParser = require('body-parser');
 
 // generate a new express app and call it 'app'
 var app = express();
+
+//connect to database
+// var mongoose = require("mongoose");
+// mongoose.connection.openUri(process.env.DB_CONN);
 
 // serve static files in public
 app.use(express.static('public'));
@@ -21,6 +25,21 @@ app.use(express.static('public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//import your models module
+var db = require('./models')
+
+
+// server.js
+app.get('/api/books', function (req, res) {
+  // send all books as JSON response
+  db.Book.find(function(err, books){
+    if (err) {
+      console.log("index error: " + err);
+      res.sendStatus(500);
+    }
+    res.json(books);
+  });
+});
 
 
 ////////////////////
@@ -73,11 +92,13 @@ app.get('/', function (req, res) {
 });
 
 // get all books
-app.get('/api/books', function (req, res) {
-  // send all books as JSON response
-  console.log('books index');
-  res.json(books);
-});
+// app.get('/api/books', function (req, res) {
+//   // send all books as JSON response
+//   console.log('books index');
+//   res.json(books);
+// });
+
+
 
 // get one book
 app.get('/api/books/:id', function (req, res) {
@@ -133,6 +154,6 @@ app.delete('/api/books/:id', function (req, res) {
 
 
 
-app.listen(port, function() {
+app.listen(3500, function() {
   console.log('Book app listening on port ' + port);
 });
