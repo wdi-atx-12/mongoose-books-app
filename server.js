@@ -10,7 +10,9 @@ var port = process.env.PORT || 3000;
 
 //require express in our app
 var express = require('express'),
-  bodyParser = require('body-parser');
+  mongoose = require('mongoose'),
+  bodyParser = require('body-parser'),
+  Models = require('./models');
 
 // generate a new express app and call it 'app'
 var app = express();
@@ -20,8 +22,6 @@ app.use(express.static('public'));
 
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 ////////////////////
 //  DATA
