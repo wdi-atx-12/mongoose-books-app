@@ -8,9 +8,10 @@
 
 var port = process.env.PORT || 3000;
 
-//require express in our app
+// require express in our app (& bodyParser & Mongoose)
 var express = require('express'),
   bodyParser = require('body-parser');
+  mongoose = require('mongoose');
 
 // generate a new express app and call it 'app'
 var app = express();
@@ -21,44 +22,35 @@ app.use(express.static('public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// allows prgm to process our schema/objects
+var Book = require('./models/book');
 
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+// allows file to use bodyParser
+// "string processor"
+app.use(bodyParser.json());
+
+var db = require('./models')
 
 ////////////////////
 //  DATA
 ///////////////////
 
-var books = [
-  {
-    _id: 15,
-    title: "The Four Hour Workweek",
-    author: "Tim Ferriss",
-    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/four_hour_work_week.jpg",
-    release_date: "April 1, 2007"
-  },
-  {
-    _id: 16,
-    title: "Of Mice and Men",
-    author: "John Steinbeck",
-    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/of_mice_and_men.jpg",
-    release_date: "Unknown 1937"
-  },
-  {
-    _id: 17,
-    title: "Romeo and Juliet",
-    author: "William Shakespeare",
-    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/romeo_and_juliet.jpg",
-    release_date: "Unknown 1597"
-  }
-];
-
+// import books from seed file/db?
+app.get('/api/books', function (req, res) {
+  // send all books as JSON response
+  db.Book.find(function(err, books){
+    if (err) {
+      console.log("index error: " + err);
+      res.sendStatus(500);
+    }
+    res.json(books);
+  });
+});
 
 var newBookUUID = 18;
-
-
-
-
-
-
 
 ////////////////////
 //  ROUTES
