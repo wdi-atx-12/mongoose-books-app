@@ -5,21 +5,23 @@
 /////////////////////////////
 //  SETUP and CONFIGURATION
 /////////////////////////////
-
 var port = process.env.PORT || 3000;
 
 //require express in our app
-var express = require('express'),
-  bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // generate a new express app and call it 'app'
 var app = express();
+require('dotenv').config();
 
 // serve static files in public
 app.use(express.static('public'));
 
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 
@@ -130,8 +132,6 @@ app.delete('/api/books/:id', function (req, res) {
   books.splice(deleteBookIndex, 1);
   res.json(bookToDelete);
 });
-
-
 
 app.listen(port, function() {
   console.log('Book app listening on port ' + port);
