@@ -6,7 +6,7 @@ var BookSchema = new Schema({
   // you should fill the rest of this in
   author: String,
   image: String,
-  releaseDate: String
+  releaseDate: Date
  });
 
 var Book = mongoose.model('Book', BookSchema);

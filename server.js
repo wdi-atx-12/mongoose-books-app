@@ -15,13 +15,14 @@ var express = require('express'),
 // generate a new express app and call it 'app'
 var app = express();
 
+var db = require('./models');
 // serve static files in public
 app.use(express.static('public'));
 
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connection.openUri(process.env.DB_CONN);
+//mongoose.connection.openUri(process.env.DB_CONN);
 
 
 
@@ -76,9 +77,11 @@ app.get('/', function (req, res) {
 
 // get all books
 app.get('/api/books', function (req, res) {
-  // send all books as JSON response
-  console.log('books index');
-  res.json(books);
+  //query database for all users
+  //the following returns json database data for all users
+  db.Book.find({}, function(err, allBooks){
+    res.json({ books: allBooks })
+  });
 });
 
 // get one book
