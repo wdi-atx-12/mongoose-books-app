@@ -120,7 +120,7 @@ app.post('/api/books', function (req, res) {
   });
 });
 
-// update book
+// update book blah blah
 app.put('/api/books/:id', function(req,res){
 // get book id from url params (`req.params`)
   // console.log('books update', req.params);
