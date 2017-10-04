@@ -11,6 +11,7 @@ var port = process.env.PORT || 3000;
 //require express in our app
 var express = require('express'),
   bodyParser = require('body-parser');
+  require('dotenv').config();
 
 // generate a new express app and call it 'app'
 var app = express();
