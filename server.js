@@ -22,7 +22,8 @@ app.use(express.static('public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+app.use(bodyParser.json());
+var db = require('./models');
 
 ////////////////////
 //  DATA
@@ -115,7 +116,7 @@ app.post('/api/books', function (req, res) {
   });
 
   newBook.save(function(err, book){
-    res.send(book);
+    res.send(`New book added: ${book}`);
   });
 });
 
@@ -124,13 +125,13 @@ app.put('/api/books/:id', function(req,res){
 // get book id from url params (`req.params`)
   // console.log('books update', req.params);
   var bookId = req.params.id;
-  var newBook = Book({
+  var newBook = {
     title: req.body.title,
     author: req.body.author,
     image: req.body.image,
     releaseDate: req.body.releaseDate
-  })
-  User.findByIdAndUpdate(bookId, newBook, {new: true}, function(err, updatedBook){
+  }
+  db.Book.findByIdAndUpdate(bookId, newBook, {return: true}, function(err, updatedBook){
     res.json(updatedBook);
   })
   // // find the index of the book we want to remove
@@ -149,7 +150,7 @@ app.delete('/api/books/:id', function (req, res) {
   // console.log('books delete', req.params);
   var bookId = req.params.id;
   // find the index of the book we want to remove
-  User.findOneAndRemove({_id: bookId}, function(err, removedBook){
+  db.Book.findOneAndRemove({_id: bookId}, function(err, removedBook){
     res.json(removedBook)
   })
   // var deleteBookIndex = books.findIndex(function(element, index) {
